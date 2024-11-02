@@ -1,70 +1,92 @@
-name: "template"
-
+name: "aws-iam-service-linked-roles"
 # Canonical GitHub repo
-github_repo: "cloudposse-terraform-components/template"
-
+github_repo: "cloudposse-terraform-components/aws-iam-service-linked-roles"
 # Short description of this project
 description: |-
-  Description of this component
+  This component is responsible for provisioning
+  [IAM Service-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html).
 
-usage: |-
-  **Stack Level**: Regional or Test47
+  ## Usage
 
-  Here's an example snippet for how to use this component.
-  
+  **Stack Level**: Global
+
   ```yaml
   components:
     terraform:
-      foo:
+      iam-service-linked-roles:
+        settings:
+          spacelift:
+            workspace_enabled: true
         vars:
           enabled: true
+          service_linked_roles:
+            spot_amazonaws_com:
+              aws_service_name: "spot.amazonaws.com"
+              description: "AWSServiceRoleForEC2Spot Service-Linked Role for EC2 Spot"
+            spotfleet_amazonaws_com:
+              aws_service_name: "spotfleet.amazonaws.com"
+              description: "AWSServiceRoleForEC2SpotFleet Service-Linked Role for EC2 Spot Fleet"
   ```
 
+  ## Service-Linked Roles for EC2 Spot and EC2 Spot Fleet
+
+  **Note:** If you want to use EC2 Spot or Spot Fleet, you will need to provision the following Service-Linked Roles:
+
+  - Service-Linked Role for EC2 Spot
+  - Service-Linked Role for EC2 Spot Fleet
+
+  This is only necessary if this is the first time you're using EC2 Spot and Spot Fleet in the account.
+
+  Note that if the Service-Linked Roles already exist in the AWS account (if you used EC2 Spot or Spot Fleet before), and
+  you try to provision them again, you will see the following errors:
+
+  ```text
+  An error occurred (InvalidInput) when calling the CreateServiceLinkedRole operation:
+  Service role name AWSServiceRoleForEC2Spot has been taken in this account, please try a different suffix
+
+  An error occurred (InvalidInput) when calling the CreateServiceLinkedRole operation:
+  Service role name AWSServiceRoleForEC2SpotFleet has been taken in this account, please try a different suffix
+  ```
+
+  For more details, see:
+
+  - https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html
+  - https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html
+
+  <!-- prettier-ignore-start -->
+
+  <!-- prettier-ignore-end -->
+
+  ## References
+
+  - [cloudposse/terraform-aws-components](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/iam-service-linked-roles) -
+    Cloud Posse's upstream component
 include:
   - "docs/terraform.md"
-
 tags:
-  - terraform
-  - terraform-modules
-  - aws
-  - components
-  - terraform-components
-  - root
-  - geodesic
-  - reference-implementation
-  - reference-architecture
-
+  - component/iam-service-linked-roles
+  - layer/eks
+  - provider/aws
 # Categories of this project
 categories:
-  - terraform-modules/root
-  - terraform-components
-
+  - component/iam-service-linked-roles
+  - layer/eks
+  - provider/aws
 # License of this project
 license: "APACHE2"
-
 # Badges to display
 badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse-terraform-components/template.svg?style=for-the-badge"
-    url: "https://github.com/cloudposse-terraform-components/template/releases/latest"
-  - name: "Slack Community"
-    image: "https://slack.cloudposse.com/for-the-badge.svg"
-    url: "https://slack.cloudposse.com"
-
-references:
-  - name: "Cloud Posse Documentation"
-    description: "Complete documentation for the Cloud Posse solution"
-    url: "https://docs.cloudposse.com"
-  - name: "Reference Architectures"
-    description: "Launch effortlessly with our turnkey reference architectures, built either by your team or ours."
-    url: "https://cloudposse.com/"
-
+  - name: Latest Release
+    image: https://img.shields.io/github/release/cloudposse-terraform-components/aws-iam-service-linked-roles.svg?style=for-the-badge
+    url: https://github.com/cloudposse-terraform-components/aws-iam-service-linked-roles/releases/latest
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
 related:
-- name: "Cloud Posse Terraform Modules"
-  description: Our collection of reusable Terraform modules used by our reference architectures.
-  url: "https://docs.cloudposse.com/modules/"
-- name: "Atmos"
-  description: "Atmos is like docker-compose but for your infrastructure"
-  url: "https://atmos.tools"
-
+  - name: "Cloud Posse Terraform Modules"
+    description: Our collection of reusable Terraform modules used by our reference architectures.
+    url: "https://docs.cloudposse.com/modules/"
+  - name: "Atmos"
+    description: "Atmos is like docker-compose but for your infrastructure"
+    url: "https://atmos.tools"
 contributors: [] # If included generates contribs
