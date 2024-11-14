@@ -1,4 +1,4 @@
-output "mock" {
-  description = "Mock output example for the Cloud Posse Terraform component template"
-  value       = local.enabled ? "hello ${basename(abspath(path.module))}" : ""
+output "service_linked_roles" {
+  value       = aws_iam_service_linked_role.default
+  description = "Provisioned Service-Linked roles"
 }
