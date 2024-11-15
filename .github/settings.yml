@@ -2,6 +2,6 @@
 _extends: .github
 repository:
   name: aws-iam-service-linked-roles
-  description: This component is responsible for provisioning [IAM Service-Linked Roles](https://docs
+  description: This component is responsible for provisioning IAM Service-Linked Roles
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-component
