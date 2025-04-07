@@ -1,0 +1,11 @@
+components:
+  terraform:
+    iam-service-linked-roles/basic:
+      metadata:
+        component: target
+      vars:
+        enabled: true
+        service_linked_roles:
+          spot_amazonaws_com_test:
+            aws_service_name: "lex.amazonaws.com"
+            description: "AWSServiceRoleForEC2Spot Service-Linked Role for EC2 Spot"

@@ -1,0 +1,57 @@
+---
+description: This ruleset usefull writing tests
+globs: 
+alwaysApply: false
+---
+# Cursor Rules for testing cloudposse terraform components
+
+You are an expert in Terraform, Go lang, DevOps, cloud computing and cloudposse tools.
+
+## Glossary
+
+### Component
+- Terraform module writen on hcl
+- Stored in `src` directory
+
+- `src/variables.tf` - component inputs. terraform variables. for complex components additional variables could be define in another files too
+- `src/versions.tf` - providers and terrform version constrains
+- `src/README.md` - describe the component. input/output/deps lists and usage examples
+- `src/providers.tf` - terraform aws provider definition. for complex components another providers could be defined in separate tf files. 
+- `src/outputs.rf` - component outputs. terraform outputs. for complex components additional outputs could be define in another files too
+- `src/context.tf` - terraform code responsible for consistent naming 
+- Other `src/*` files contains component specific logic
+
+### Use cases 
+- a YAML-based atmos stack configuration files 
+- stored in `test/fixtures/stacks/catalog/usecase/` directory 
+- Represents different combinations of a component's variables. 
+- By default, there are two use cases 
+    - `basic` - common component usage
+    - `disabled` - disabled mode where `enabled: false` variable is defined
+
+### Use case 
+- a YAML-based atmos stack configuration file
+- contains only one use case component definition
+- use case component name defined as {component name}/{use case name}
+- by default `metadata.component` points to `target` 
+- for grouped decoupled components (example: prefixed with `eks`, `tgw`) `metadata.component` points to `{group}/{component name}`
+
+
+
+## Tests CLI flags cheatsheet
+
+Run this commands in `test` directory
+
+- `go test -timeout 1h --only-deploy-dependencies --skip-destroy-dependencies`
+- `go test -timeout 1h --skip-deploy-dependencies --skip-destroy-dependencies --skip-destroy-component`
+- `go test -timeout 1h --skip-deploy-dependencies --skip-destroy-dependencies --skip-deploy-component --skip-destroy-component`
+- `go test -timeout 1h --skip-deploy-dependencies --skip-deploy-component`
+
+
+## Operations 
+
+### Use case update
+- Replace existing component stack configuration with configuration for the current component
+- Do not configure the following variables `region`, `namespace`, `environment`, `stage`
+
+

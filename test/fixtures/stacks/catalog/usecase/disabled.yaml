@@ -1,0 +1,14 @@
+components:
+  terraform:
+    iam-service-linked-roles/disabled:
+      metadata:
+        component: target
+      vars:
+        enabled: false
+        service_linked_roles:
+          spot_amazonaws_com:
+            aws_service_name: "spot.amazonaws.com"
+            description: "AWSServiceRoleForEC2Spot Service-Linked Role for EC2 Spot"
+          spotfleet_amazonaws_com:
+            aws_service_name: "spotfleet.amazonaws.com"
+            description: "AWSServiceRoleForEC2SpotFleet Service-Linked Role for EC2 Spot Fleet"
