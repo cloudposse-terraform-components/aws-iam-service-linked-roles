@@ -3,6 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
+	"strings"
 	"testing"
 
 	helper "github.com/cloudposse/test-helpers/pkg/atmos/component-helper"
