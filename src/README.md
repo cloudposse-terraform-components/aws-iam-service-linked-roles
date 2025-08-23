@@ -116,7 +116,7 @@ Service role name AWSServiceRoleForEC2SpotFleet has been taken in this account, 
 ## References
 
 
-- [cloudposse/terraform-aws-components (upstream)](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/iam-service-linked-roles) - Cloud Posse's upstream component
+- [cloudposse-terraform-components](https://github.com/orgs/cloudposse-terraform-components/repositories) - Cloud Posse's upstream component
 
 - [AWS Batch — Spot Fleet IAM role](https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html) - 
 
