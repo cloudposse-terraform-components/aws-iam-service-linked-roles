@@ -180,7 +180,7 @@ Check out these related projects.
 
 For additional context, refer to some of these links.
 
-- [cloudposse/terraform-aws-components (upstream)](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/iam-service-linked-roles) - Cloud Posse's upstream component
+- [cloudposse-terraform-components](https://github.com/orgs/cloudposse-terraform-components/repositories) - Cloud Posse's upstream component
 - [AWS Batch — Spot Fleet IAM role](https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html) - 
 - [AWS IAM — Service-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) - 
 
